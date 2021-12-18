@@ -1,6 +1,5 @@
 import { deepCopyFunction } from "./deepCopy.js";
 import { filterLongestScenarios } from "./filterLongestScenarios.js";
-import { flatCopy } from "./flatCopy.js";
 
 export const checkForTargets = boardState => {
     const nextColor = (boardState.color == 'W') ? 'B' : 'W';

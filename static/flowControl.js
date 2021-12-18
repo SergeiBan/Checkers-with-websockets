@@ -15,7 +15,7 @@ export const flowControl = boardState => {
     }
     if (!boardState.mustAttack && boardState.isPicked) { // Moving ahead
         moveAhead(boardState);
-        if (boardState.isPvP) { 
+        if (boardState.isRemote) { 
             ws.send(JSON.stringify(boardState));
         }
         return;

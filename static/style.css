@@ -32,16 +32,53 @@ button {
     height: 10%;
 }
 
+.menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-button {
+    width: 10vmax;
+    height: 10vmin;
+}
+
 .game-menu {
     position: absolute;
-    width: 95vmin;
-    height: 95vmin;;
+    width: 60vmin;
+    height: 60vmin;;
     z-index: 100;
     background-color: white;
-    left: 5%;
-    top: 5%;
+    left: 20vmin;
+    top: 20vmin;
+    border: solid 5px grey;
 }
 
 .toggle-game-menu:checked ~ .game-menu {
+    
+}
+
+@media screen and (orientation: portrait) {
+    .game-menu {
+        width: 60vmin;
+        height: 60vmax;
+        left: 20vmin;
+        top: 20vmax;
+    }
+}
+
+@media screen and (orientation: landscape) {
+    .game-menu {
+        width: 60vmax;
+        height: 60vmin;
+        left: 20vmax;
+        top: 20vmin;
+    }
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.underlayer {
     z-index: -1;
 }

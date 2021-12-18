@@ -48,4 +48,4 @@ async def websocket_endpoint(websocket: WebSocket, id: int):
             await manager.send_message(f'{data}', id)
     except WebSocketDisconnect:
         manager.disconnect(websocket, id)
-        await manager.send_message(f'Client {id} has left')
+        await manager.send_message(f'Player {id} has left')

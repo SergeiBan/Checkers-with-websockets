@@ -4,21 +4,18 @@
         <link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}">
     </head>
     <body>
-        <input type="checkbox" class="toggle-game-menu">
+        <button class="toggle-game-menu">Menu</button>
         <div class="game-menu">
-            <input type="radio" id="pvc" name="game-mode">
-            <input type="radio" id="pvp" name="game-mode">
-            <h1 id="ws-id">Your ID</h1>
-            <!-- <form action="" onsubmit="sendMessage(event)">
-                <input type="text" id="messageText" autocomplete="off"/>
-                <button>Send</button>
-            </form> -->
-            <ul id='messages'>
-            </ul>
-            <div id="move-number"></div>
+            <div class="menu">
+                <button id="sameDeviceBtn" class="menu-button">Start</button>
+                <label for="sameDeviceBtn">Players using the same device</label>
+                <button id="differentDevicesBtn" class="menu-button">Invite</button>
+                <label for="differentDevicesBtn">Players using two devices</label>
+                <h1 id="ws-id">Tell this number to the second player so he can join you.</h1>
+            </div>
         </div>
         
         <script type='module' src="{{ url_for('static', path='/index.js') }}"></script>
-        <script type='module'src="{{ url_for('static', path='/ws.js') }}"></script>
+        <script type='module' src="{{ url_for('static', path='/ws.js') }}"></script>
     </body>
 </html>
