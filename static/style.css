@@ -1,0 +1,47 @@
+.board {
+    width: 95vmin;
+    height: 95vmin;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.B {
+    background: blue;
+}
+
+.V {
+    background: grey;
+}
+
+.W {
+    background: green;
+}
+
+.W.Q {
+    background: cyan;
+}
+
+.B.Q {
+    background: darkorchid;
+}
+button {
+    border: none;
+    outline: outset;
+    width: 10%;
+    height: 10%;
+}
+
+.game-menu {
+    position: absolute;
+    width: 95vmin;
+    height: 95vmin;;
+    z-index: 100;
+    background-color: white;
+    left: 5%;
+    top: 5%;
+}
+
+.toggle-game-menu:checked ~ .game-menu {
+    z-index: -1;
+}
