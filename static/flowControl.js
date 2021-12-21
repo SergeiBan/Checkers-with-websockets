@@ -1,7 +1,7 @@
 import { moveAhead } from "./moveAhead.js";
 import { strike } from "./strike.js";
 import { pickMan } from "./pickMan.js";
-import { ws } from "./ws.js";
+import { ws } from "./index.js";
 import { repaintBoard } from "./repaintBoard.js";
 
 export const flowControl = boardState => {
