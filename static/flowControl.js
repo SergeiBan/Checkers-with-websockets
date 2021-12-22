@@ -1,8 +1,8 @@
 import { moveAhead } from "./moveAhead.js";
 import { strike } from "./strike.js";
 import { pickMan } from "./pickMan.js";
-import { ws } from "./index.js";
-import { repaintBoard } from "./repaintBoard.js";
+import { ws } from "./newGameBtn.js";
+import { firstPlayer } from "./newGameBtn.js";
 
 export const flowControl = boardState => {
     const btn = boardState.buttonPosition;
@@ -15,7 +15,7 @@ export const flowControl = boardState => {
     }
     if (!boardState.mustAttack && boardState.isPicked) { // Moving ahead
         moveAhead(boardState);
-        if (boardState.isRemote) { 
+        if (boardState.isRemote) {
             ws.send(JSON.stringify(boardState));
         }
         return;

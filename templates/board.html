@@ -4,30 +4,24 @@
         <link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}">
     </head>
     <body>
-        <button class="toggle-game-menu">Menu</button>
-        <div class="game-menu">
-            <div class="menu">
-                <button id="sameDeviceBtn" class="menu-button">Start</button>
-                <label for="sameDeviceBtn">Players using the same device</label>
+        <div class="wrapper">
+            <div class="menu-btns">
+                <button id="sameDeviceBtn" class="menu-button">One device</button>
                 <button id="firstDevicesBtn" class="menu-button">Invite</button>
-                <label for="firstDevicesBtn">Players using two devices</label>
                 <button id="secondDeviceBtn" class="menu-button">Join</button>
-                <label for="secondDeviceBtn">Enter the board number</label>
-                <div>
-                    <form name="join">
-                        <input type="number" class="id-input" name="joinId" required>
-                        <input type="submit" class="send-id">Join</button>
-                    </form>
+            </div>
+            <div class="board" id="board"></div>
+            <div class="game-menu invisible underlayer">
+                <div class="menu">
+                    <!-- <div class="menu-form" id="menu-form">
+                        <form name="join">
+                            <input type="number" class="id-input" name="joinId" required>
+                            <input type="submit" class="send-id">Join</button>
+                        </form>
+                    </div> -->
                 </div>
-                <div class="invitation invisible">
-                    <h2>Tell this number to the second player so he can join you.</h2>
-                    <span id="ws-id">Tell this number to the second player so he can join you.</span>                    
-                </div>
-                <h2 class="invisible">Tell this number to the second player so he can join you.</h2>
-                <span id="ws-id" class="invisible">Tell this number to the second player so he can join you.</span>
             </div>
         </div>
-        
         <script type='module' src="{{ url_for('static', path='/index.js') }}"></script>
         <script type='module' src="{{ url_for('static', path='/ws.js') }}"></script>
     </body>

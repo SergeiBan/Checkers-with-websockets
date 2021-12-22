@@ -29,6 +29,7 @@ class ConnectionManager:
         else:
             if self.active_connections.get(client_id, 'nope') == 'nope':
                 raise WebSocketDisconnect
+            await websocket.accept()
             self.active_connections[client_id].append(websocket)
             print("the second player is here")
     
@@ -58,11 +59,3 @@ async def websocket_endpoint(websocket: WebSocket, client_id: int, first_device:
         print("websocket closed", client_id)
         manager.disconnect(websocket, client_id)
         await manager.send_message(f'Player {client_id} has left', client_id)
-
-
-# class Id(BaseModel):
-#     connection_number: int
-
-# @app.post("/join")
-# async def join(id: Id):
-#     return manager.join(id)
