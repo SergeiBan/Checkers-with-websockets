@@ -59,7 +59,7 @@ export const inviteSecondPlayer = () => {
     menu.appendChild(wsId);
 
     if (ws) { ws.close; }
-    ws = new WebSocket(`ws://localhost:8000/ws/${client_id}/${true}`);
+    ws = new WebSocket(`ws://ws/${client_id}/${true}`);
     
     ws.onmessage = function(event) {
         if (!connectionEstablished) {
@@ -96,7 +96,7 @@ export const join = () => {
     sendBtn.onclick = function() {
         const boardId = inputId.value;
         if (ws) { ws.close(); }
-        ws = new WebSocket(`ws://localhost:8000/ws/${boardId}/${false}`);
+        ws = new WebSocket(`ws://ws/${boardId}/${false}`);
         boardState.isRemote = true;
 
         ws.onmessage = function(event) {
