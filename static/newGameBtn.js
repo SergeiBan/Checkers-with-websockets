@@ -47,7 +47,6 @@ export const inviteSecondPlayer = () => {
         return Math.floor(Math.random() * max);
     }
     let client_id = getRandomId(10000);
-    client_id = 1;
     const invitation = document.createElement('div');
     invitation.classList.add('invitation');
     invitation.textContent = "Tell this number to the other player. Once he enters it this menu will be closed and the game begins";
