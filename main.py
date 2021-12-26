@@ -31,10 +31,9 @@ class ConnectionManager:
                 raise WebSocketDisconnect
             await websocket.accept()
             self.active_connections[client_id].append(websocket)
-            print("the second player is here")
+            await self.send_message('second is here', client_id);
     
     def disconnect(self, websocket: WebSocket, client_id: int):
-        print("websocket id is", client_id)
         self.active_connections[client_id].remove(websocket)
     
     async def send_message(self, message: str, client_id: int):
@@ -58,4 +57,4 @@ async def websocket_endpoint(websocket: WebSocket, client_id: int, first_device:
     except WebSocketDisconnect:
         print("websocket closed", client_id)
         manager.disconnect(websocket, client_id)
-        await manager.send_message(f'Player {client_id} has left', client_id)
+        # await manager.send_message(f'Player has left', client_id)

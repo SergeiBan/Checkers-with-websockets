@@ -5,6 +5,9 @@ import { ws } from "./newGameBtn.js";
 import { firstPlayer } from "./newGameBtn.js";
 
 export const flowControl = boardState => {
+    if (firstPlayer && boardState.color !== 'W' && boardState.isRemote ||
+    !firstPlayer && boardState.color !== 'B' && boardState.isRemote) { return; }
+
     const btn = boardState.buttonPosition;
     const [newY, newX] = [parseInt(btn.dataset.y), parseInt(btn.dataset.x)];
 

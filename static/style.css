@@ -44,7 +44,7 @@ button {
 .menu {
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
 }
 
@@ -67,11 +67,11 @@ button {
 .game-menu {
     display: flex;
     position: absolute;
-    width: 40vmin;
-    height: 40vmin;;
+    width: 60vmin;
+    height: 60vmin;;
     z-index: 100;
     background-color: white;
-    left: 20vmin;
+    left: 40%;
     top: 20vmin;
     background-color: lightgrey;
     border: solid 5px darkgrey;
@@ -80,7 +80,7 @@ button {
 @media screen and (orientation: portrait) {
     .game-menu {
         width: 60vmin;
-        height: 60vmax;
+        height: 60vmin;
         left: 20vmin;
         top: 20vmax;
     }
@@ -120,4 +120,31 @@ button {
 
 .rotated {
     transform: rotate(180deg);
+}
+
+.newGameBtn, .cancelBtn, .input-board-id, .send-btn, .invitation, .ws-id {
+    width: 30vmin;
+    height: 10vmin;
+    margin: 0 auto;
+    color: white;
+    font-weight: bold;
+}
+
+.newGameBtn, .invitation {
+    background-color: green;
+}
+
+.cancelBtn, .ws-id, .send-btn {
+    background-color: blue;
+}
+
+.input-board-id {
+    color: black;
+    font-weight: bold;
+    font-size: xx-large;
+    border: green 5px solid;
+}
+
+.ws-id {
+    font-size: xx-large;
 }

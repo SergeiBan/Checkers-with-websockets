@@ -37,7 +37,7 @@ export const boardState = {
     buttonPosition: 0,
     attackScenarios: [],
     isRemote: false,
-    moveNumber: 0
+    moveNumber: 0,
 }
 
 export const defaultBoardState = {
