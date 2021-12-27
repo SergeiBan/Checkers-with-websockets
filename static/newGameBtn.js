@@ -64,7 +64,7 @@ export const inviteSecondPlayer = () => {
     wsId.textContent = client_id;
     menu.appendChild(wsId);
 
-    if (ws) { ws.close; }
+    if (ws) { ws.close(); }
     ws = new WebSocket(`${ws_scheme}${window.location.host}/ws/${client_id}/${true}`);
     
     ws.onmessage = function(event) {
