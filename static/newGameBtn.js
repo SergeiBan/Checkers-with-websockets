@@ -6,10 +6,11 @@ export let ws = false;
 export let firstPlayer = false;
 let connectionEstablished = false;
 
+const ws_scheme = '';
 if (window.location.protocol == "https:") {
-    const ws_scheme = "wss://";
+    ws_scheme = "wss://";
 } else {
-    const ws_scheme = "ws://"
+    ws_scheme = "ws://";
 };
 
 const board = document.getElementsByClassName('board')[0];
