@@ -3,7 +3,7 @@ import { repaintBoard } from "./repaintBoard.js";
 import { deepCopyFunction } from "./deepCopy.js";
 
 export let ws = false;
-export let firstPlayer = true;
+export let firstPlayer = false;
 let connectionEstablished = false;
 
 let ws_scheme = '';
@@ -65,7 +65,7 @@ export const inviteSecondPlayer = () => {
     wsId.textContent = client_id;
     menu.appendChild(wsId);
 
-    if (ws) { ws.close(); }
+    // if (ws) { ws.close(); }
     ws = new WebSocket(`${ws_scheme}${window.location.host}/ws/${client_id}/true`);
     
     ws.onmessage = function(event) {
@@ -102,7 +102,7 @@ export const join = () => {
     sendBtn.textContent = 'Join!';
     sendBtn.onclick = function() {
         const boardId = inputId.value;
-        if (ws) { ws.close(); }
+        // if (ws) { ws.close(); }
         ws = new WebSocket(`${ws_scheme}${window.location.host}/ws/${boardId}/false`);
         boardState.isRemote = true;
 
