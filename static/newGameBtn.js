@@ -3,7 +3,7 @@ import { repaintBoard } from "./repaintBoard.js";
 import { deepCopyFunction } from "./deepCopy.js";
 
 export let ws = false;
-export let firstPlayer = false;
+export let firstPlayer = true;
 let connectionEstablished = false;
 
 let ws_scheme = '';
