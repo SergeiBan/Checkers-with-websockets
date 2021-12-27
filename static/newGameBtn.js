@@ -25,6 +25,7 @@ export const startNewGame = () => {
     newGameBtn.classList.add('newGameBtn');
     newGameBtn.textContent = 'New Game';
     newGameBtn.onclick = function() {
+        connectionEstablished = false;
         for (let key of Object.keys(defaultBoardState)) {
             boardState[key] = deepCopyFunction(defaultBoardState[key]);
         }
