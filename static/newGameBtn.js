@@ -6,6 +6,12 @@ export let ws = false;
 export let firstPlayer = false;
 let connectionEstablished = false;
 
+if (window.location.protocol == "https:") {
+    const ws_scheme = "wss://";
+} else {
+    const ws_scheme = "ws://"
+};
+
 const board = document.getElementsByClassName('board')[0];
 const gameMenu = document.getElementsByClassName('game-menu')[0];
 const menu = document.getElementsByClassName('menu')[0];
@@ -58,7 +64,7 @@ export const inviteSecondPlayer = () => {
     menu.appendChild(wsId);
 
     if (ws) { ws.close; }
-    ws = new WebSocket(`wss://${window.location.host}/ws/${client_id}/true`);
+    ws = new WebSocket(`${ws_scheme}${window.location.host}/ws/${client_id}/true`);
     
     ws.onmessage = function(event) {
         if (!connectionEstablished) {
@@ -95,7 +101,7 @@ export const join = () => {
     sendBtn.onclick = function() {
         const boardId = inputId.value;
         if (ws) { ws.close(); }
-        ws = new WebSocket(`wss://${window.location.host}/ws/${boardId}/false`);
+        ws = new WebSocket(`${ws_scheme}${window.location.host}/ws/${boardId}/false`);
         boardState.isRemote = true;
 
         ws.onmessage = function(event) {
