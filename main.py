@@ -28,7 +28,8 @@ class ConnectionManager:
             self.active_connections[client_id].append(websocket)
         else:
             if self.active_connections.get(client_id, 'nope') == 'nope':
-                raise WebSocketDisconnect
+                print(self.active_connections, 'here we go')
+                # raise WebSocketDisconnect
             await websocket.accept()
             self.active_connections[client_id].append(websocket)
             await self.send_message('second is here', client_id);
