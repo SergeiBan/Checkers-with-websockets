@@ -103,7 +103,7 @@ export const join = () => {
     sendBtn.onclick = function() {
         const boardId = inputId.value;
         if (ws) { ws.close(); }
-        ws = new WebSocket(`${ws_scheme}${window.location.host}/ws/${boardId}/true`);
+        ws = new WebSocket(`${ws_scheme}${window.location.host}/ws/${boardId}/false`);
         boardState.isRemote = true;
 
         ws.onmessage = function(event) {
