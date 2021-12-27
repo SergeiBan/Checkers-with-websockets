@@ -18,6 +18,7 @@ const gameMenu = document.getElementsByClassName('game-menu')[0];
 const menu = document.getElementsByClassName('menu')[0];
 
 export const startNewGame = () => {
+    connectionEstablished = false;
     menu.textContent = '';
     gameMenu.classList.remove("invisible", "underlayer");
     
