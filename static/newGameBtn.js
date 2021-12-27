@@ -6,7 +6,7 @@ export let ws = false;
 export let firstPlayer = false;
 let connectionEstablished = false;
 
-const ws_scheme = '';
+let ws_scheme = '';
 if (window.location.protocol == "https:") {
     ws_scheme = "wss://";
 } else {
