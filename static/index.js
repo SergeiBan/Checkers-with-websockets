@@ -54,7 +54,7 @@ export const defaultBoardState = {
 
 for (let row = 0; row < board.length; row++) {
     for (let man = 0; man < board.length; man++) {
-        let btn = document.createElement("div");
+        let btn = document.createElement("button");
         btn.classList.add(board[row][man]);
         btn.setAttribute('data-y', row);
         btn.setAttribute('data-x', man);

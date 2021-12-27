@@ -28,7 +28,6 @@ class ConnectionManager:
             self.active_connections[client_id].append(websocket)
         else:
             if self.active_connections.get(client_id, 'nope') == 'nope':
-                print(self.active_connections)
                 raise WebSocketDisconnect
             await websocket.accept()
             self.active_connections[client_id].append(websocket)
@@ -56,5 +55,6 @@ async def websocket_endpoint(websocket: WebSocket, client_id: int, first_device:
             data = await websocket.receive_text()
             await manager.send_message(f'{data}', client_id)
     except WebSocketDisconnect:
+        print("websocket closed", client_id)
         manager.disconnect(websocket, client_id)
         # await manager.send_message(f'Player has left', client_id)

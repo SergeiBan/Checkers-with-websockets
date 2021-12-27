@@ -25,7 +25,7 @@
 .B.Q {
     background: darkorchid;
 }
-button, #board div {
+button {
     border: none;
     outline: outset;
     width: 10%;
