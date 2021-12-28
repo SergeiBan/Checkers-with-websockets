@@ -11,7 +11,7 @@ export const flowControl = boardState => {
     const btn = boardState.buttonPosition;
     const [newY, newX] = [parseInt(btn.dataset.y), parseInt(btn.dataset.x)];
 
-    // We are free to choose a man
+    // We are free to choose a man at this point
     if (!boardState.mustAttack && btn.classList.contains(boardState.color)) {
         pickMan(boardState, btn);
         return;
@@ -33,7 +33,6 @@ export const flowControl = boardState => {
     }
     if (boardState.mustAttack && boardState.isPicked) {
         strike(boardState);
-        if (boardState.isRemote) { ws.send(JSON.stringify(boardState)); }
         return;
     }
 }

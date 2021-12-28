@@ -1,6 +1,7 @@
 import { pickMan } from "./pickMan.js";
 import { discardScenarios } from "./discardScenarios.js";
 import { checkForTargets } from "./checkForTargets.js";
+import { ws } from "./newGameBtn.js";
 
 export const strike = boardState => {
     const btn = boardState.buttonPosition;
@@ -49,6 +50,9 @@ export const strike = boardState => {
                 boardState.isPicked = false;
                 boardState.attackScenarios = newScenarios;
                 boardState.color = (boardState.color == 'W') ? 'B' : 'W';
+                if (boardState.isRemote) {
+                    ws.send(JSON.stringify(boardState));
+                }
                 return;
             }
         }

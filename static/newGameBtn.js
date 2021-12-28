@@ -117,9 +117,9 @@ export const join = () => {
             }
             const newState = JSON.parse(event.data);
             for (let key of Object.keys(boardState)) {
-                boardState[key] = newState[key]
+                boardState[key] = newState[key];
             }
-            repaintBoard(boardState); 
+            repaintBoard(boardState);
         };
         
         board.classList.add('rotated');
