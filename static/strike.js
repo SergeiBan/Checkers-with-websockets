@@ -41,14 +41,12 @@ export const strike = boardState => {
                     scenario['eaten'].shift();
                     scenario['counter'] -= 1;                    
                 });
-
                 boardState.pickedButton = boardState.buttonPosition;
-                
                 return;
             } else {
                 const newScenarios = checkForTargets(boardState);
                 boardState.mustAttack = (newScenarios.length > 0) ? true : false;
-                boardState.isPicked = (newScenarios.length > 0) ? true : false;
+                // boardState.isPicked = (newScenarios.length > 0) ? true : false;
                 boardState.attackScenarios = newScenarios;
                 boardState.color = (boardState.color == 'W') ? 'B' : 'W';
                 return;

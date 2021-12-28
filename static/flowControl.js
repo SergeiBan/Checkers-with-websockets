@@ -33,7 +33,7 @@ export const flowControl = boardState => {
     }
     if (boardState.mustAttack && boardState.isPicked) {
         strike(boardState);
-        ws.send(JSON.stringify(boardState));
+        if (boardState.isRemote) { ws.send(JSON.stringify(boardState)); }
         return;
     }
 }
