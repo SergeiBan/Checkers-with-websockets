@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 	"strconv"
 
 	"github.com/gorilla/websocket"
@@ -75,5 +76,10 @@ func main() {
 	fs := http.FileServer(http.Dir("../static"))
 	http.Handle("/", fs)
 
-	http.ListenAndServe(":8080", nil)
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "9000"
+	}
+
+	http.ListenAndServe(":"+port, nil)
 }
