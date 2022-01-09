@@ -17,18 +17,11 @@ export const moveAhead = boardState => {
         ((boardState.color == 'W' && y == pickedY - 1 && Math.abs(x - pickedX) == 1) ||
         (boardState.color == 'B' && y == pickedY + 1 && Math.abs(x - pickedX) == 1)))
         ) {
-
-            // btn.classList.remove(...btn.classList);
-            // btn.classList.add(...boardState.pickedButton.classList);
             boardState.boardNow[y][x] = boardState.boardNow[pickedY][pickedX];
-    
-            // boardState.pickedButton.classList.remove(...boardState.pickedButton.classList);
-            // boardState.pickedButton.classList.add('V');
             boardState.boardNow[pickedY][pickedX] = 'V';
     
             if ((boardState.color == 'W' && y == 0) || (boardState.color == 'B' && y == boardState.boardNow.length - 1)) {
                 if (!btn.classList.contains('Q')) { 
-                    // btn.classList.add('Q');
                     boardState.boardNow[y][x] += 'Q';
                 }
             }
