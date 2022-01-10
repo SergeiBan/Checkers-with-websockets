@@ -57,15 +57,11 @@ func wsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	for {
-		// Read message from browser
 		msgType, msg, err := conn.ReadMessage()
 		if err != nil {
 			fmt.Println("Reading error", err)
 			return
 		}
-
-		// fmt.Printf("%s sent: %s\n", conn.RemoteAddr(), string(msg))
-
 		broadcast(room[boardId], msgType, msg)
 	}
 }
@@ -73,7 +69,7 @@ func wsHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	http.HandleFunc("/ws", wsHandler)
 
-	fs := http.FileServer(http.Dir("./static"))
+	fs := http.FileServer(http.Dir("../static"))
 	http.Handle("/", fs)
 
 	port := os.Getenv("PORT")
