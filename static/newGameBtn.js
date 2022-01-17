@@ -1,3 +1,4 @@
+//These funcs are for game control buttons
 import { defaultBoardState, boardState } from "./index.js";
 import { repaintBoard } from "./repaintBoard.js";
 import { deepCopyFunction } from "./deepCopy.js";
@@ -17,6 +18,7 @@ const board = document.getElementsByClassName('board')[0];
 const gameMenu = document.getElementsByClassName('game-menu')[0];
 const menu = document.getElementsByClassName('menu')[0];
 
+//This func starts a new game on the single device
 export const startNewGame = () => {
     menu.textContent = '';
     gameMenu.classList.remove("invisible", "underlayer");
@@ -24,6 +26,12 @@ export const startNewGame = () => {
     const newGameBtn = document.createElement("button");
     newGameBtn.classList.add('newGameBtn');
     newGameBtn.textContent = 'New Game';
+    const cancelBtn = document.createElement("button");
+    cancelBtn.classList.add('cancelBtn');
+    cancelBtn.textContent = 'Cancel';
+    cancelBtn.onclick = cancelNewGame;
+    
+
     newGameBtn.onclick = function() {
         connectionEstablished = false;
         for (let key of Object.keys(defaultBoardState)) {
@@ -37,56 +45,56 @@ export const startNewGame = () => {
         board.classList.remove('rotated');
     }
     menu.appendChild(newGameBtn);
-
-    const cancelBtn = document.createElement("button");
-    cancelBtn.classList.add('cancelBtn');
-    cancelBtn.textContent = 'Cancel';
-    cancelBtn.onclick = function() {
-        gameMenu.classList.add("invisible", "underlayer");
-        menu.textContent = '';
-    }
     menu.appendChild(cancelBtn);
+    
 }
 
+//This func gets a player a number so he could pass it to his friend
 export const inviteSecondPlayer = () => {
     menu.textContent = '';
     gameMenu.classList.remove("invisible", "underlayer");
-    const getRandomId = max => {
-        return Math.floor(Math.random() * max);
-    }
-    let client_id = getRandomId(10000);
-    const invitation = document.createElement('div');
-    invitation.classList.add('invitation');
-    invitation.textContent = "Tell this number to the other player. Once he enters it this menu will be closed and the game begins";
-    menu.appendChild(invitation);
-
-    const wsId = document.createElement('div');
-    wsId.classList.add('ws-id');
-    wsId.textContent = client_id;
-    menu.appendChild(wsId);
-
-    if (ws) { ws.close(); }
-    ws = new WebSocket(`${ws_scheme}${window.location.host}/ws?id=${client_id}&first=${true}`);
     
-    ws.onmessage = function(event) {
-        if (!connectionEstablished) {
-            connectionEstablished = true;
-            gameMenu.classList.add("invisible", "underlayer");
-            menu.textContent = '';
-            firstPlayer = true;
-            return;
+    const invitation = document.createElement('button');
+    invitation.classList.add('invitation');
+    invitation.textContent = "Start multiplayer game";
+    menu.appendChild(invitation);
+    const cancelBtn = document.createElement('button');
+    cancelBtn.classList.add('ws-id');
+    cancelBtn.textContent = "Cancel"
+    cancelBtn.onclick = cancelNewGame;
+    menu.appendChild(cancelBtn);
 
+    invitation.onclick = () => {
+        cancelBtn.onclick = () => { if (ws) { ws.close(); } cancelNewGame(); }
+        const getRandomId = max => {
+            return Math.floor(Math.random() * max);
         }
+        let client_id = getRandomId(10000); //Provide the board ID
+        invitation.textContent = client_id + " - Tell this number to the other player. Once he enters it this menu will be closed and the game begins";
+        invitation.disabled = true;
+
+        if (ws) { ws.close(); }
+        ws = new WebSocket(`${ws_scheme}${window.location.host}/ws?id=${client_id}&first=${true}`);
+    
+         ws.onmessage = function(event) {
+            if (!connectionEstablished) {
+                connectionEstablished = true;
+                gameMenu.classList.add("invisible", "underlayer");
+                menu.textContent = '';
+                firstPlayer = true;
+                return;
+            }
         const newState = JSON.parse(event.data);
         for (let key of Object.keys(boardState)) {
             boardState[key] = newState[key]
         }
         repaintBoard(boardState); 
-    
     };
     boardState.isRemote = true;
+    }
 }
 
+//Join the first player by entering the code provided by him
 export const join = () => {
     menu.textContent = '';
     gameMenu.classList.remove("invisible", "underlayer");
@@ -126,4 +134,9 @@ export const join = () => {
     }
     menu.appendChild(inputId);
     menu.appendChild(sendBtn);
+}
+
+const cancelNewGame = (shouldCloseConnection = false) => {
+    gameMenu.classList.add("invisible", "underlayer");
+    menu.textContent = '';
 }

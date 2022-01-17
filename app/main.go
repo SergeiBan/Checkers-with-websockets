@@ -14,6 +14,7 @@ var upgrader = websocket.Upgrader{
 	WriteBufferSize: 1024,
 }
 
+//We only need to get the ID of our board here, so that two players can connect
 func queryParse(r *http.Request) (int, string) {
 	params := r.URL.Query()
 	if len(params) == 0 {
@@ -38,6 +39,9 @@ func broadcast(conns []*websocket.Conn, msgType int, msg []byte) {
 	}
 }
 
+//Basic handler just upgrades the connection then adds a player to his board (room)
+//After that it just calls "broadcast" function to send everything received to each
+//player in the room.
 func wsHandler(w http.ResponseWriter, r *http.Request) {
 	boardId, isFirst := queryParse(r)
 	if isFirst == "NaN" {
