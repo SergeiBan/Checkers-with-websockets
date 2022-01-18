@@ -73,7 +73,7 @@ func wsHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	http.HandleFunc("/ws", wsHandler)
 
-	fs := http.FileServer(http.Dir("../static"))
+	fs := http.FileServer(http.Dir("./static"))
 	http.Handle("/", fs)
 
 	port := os.Getenv("PORT")
