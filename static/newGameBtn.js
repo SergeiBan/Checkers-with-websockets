@@ -49,7 +49,7 @@ export const startNewGame = () => {
     
 }
 
-//This func gets a player a number so he could pass it to his friend
+//This func provides a player with a number so he could pass it to his friend
 export const inviteSecondPlayer = () => {
     menu.textContent = '';
     gameMenu.classList.remove("invisible", "underlayer");
@@ -134,6 +134,30 @@ export const join = () => {
     }
     menu.appendChild(inputId);
     menu.appendChild(sendBtn);
+}
+
+export const loginRegister = () => {
+    menu.textContent = '';
+    gameMenu.classList.remove("invisible", "underlayer");
+    
+    const form = document.createElement("form");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", "/login");
+    const login = document.createElement("input");
+    login.setAttribute("type", "text");
+    login.setAttribute("name", "login");
+    login.setAttribute("placeholder", "Login");
+
+    const submit = document.createElement("input");
+    submit.setAttribute("type", "submit");
+    submit.setAttribute("value", "Submit");
+    // submit.onclick = (e) => {
+    //     e.preventDefault();
+    // }
+    
+    form.appendChild(login);
+    form.appendChild(submit);
+    menu.appendChild(form);
 }
 
 const cancelNewGame = (shouldCloseConnection = false) => {

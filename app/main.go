@@ -70,11 +70,19 @@ func wsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func login(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "POST" {
+		fmt.Println(r.FormValue("login"))
+	}
+}
+
 func main() {
 	http.HandleFunc("/ws", wsHandler)
 
 	fs := http.FileServer(http.Dir("../static"))
 	http.Handle("/", fs)
+
+	http.HandleFunc("/login", login)
 
 	port := os.Getenv("PORT")
 	if port == "" {

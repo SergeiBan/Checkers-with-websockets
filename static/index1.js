@@ -1,5 +1,5 @@
 import { flowControl } from "./flowControl.js";
-import { startNewGame, inviteSecondPlayer, join, loginRegister } from "./newGameBtn.js";
+import { startNewGame, inviteSecondPlayer, join } from "./newGameBtn.js";
 
 export const board = [
     ['V', 'B', 'V', 'B', 'V', 'B', 'V', 'B', 'V', 'B'],
@@ -52,14 +52,18 @@ export const defaultBoardState = {
     moveNumber: 0
 }
 
-
-let men = document.querySelectorAll('[data-x]');
-for (let i = 0; i < board.length*board.length; i++) {
-        const man = men[i];
-        man.onclick = function() {
-            boardState.buttonPosition = man;
+for (let row = 0; row < board.length; row++) {
+    for (let man = 0; man < board.length; man++) {
+        let btn = document.createElement("button");
+        btn.classList.add(board[row][man]);
+        btn.setAttribute('data-y', row);
+        btn.setAttribute('data-x', man);
+        btn.onclick = function() {
+            boardState.buttonPosition = btn;
             flowControl(boardState);
         }
+        boardElement.appendChild(btn);
+    }
 }
 const gameMenu = document.getElementsByClassName('game-menu')[0];
 
